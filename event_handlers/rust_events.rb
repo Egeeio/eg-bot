@@ -42,8 +42,11 @@ module RustEvents
 
       puts "RUST: #{msg}"
 
-      @ws.send(msg['COMMAND']) unless command_sent?(msg)
-      to_discord(msg['SERVER']) unless server_sent?(msg)
+      if message.key?('COMMAND')
+        send_message(msg['COMMAND']) { |m| @ws.send(m) }
+      elsif message.key?('SERVER')
+        send_message(msg['SERVER']) { |m| to_discord(m) }
+      end
     end
   end
 
