@@ -12,7 +12,7 @@ module DiscordEvents
   # Server event handler
   member_join do |event|
     debug_channel(event.server)
-      .send_message("#{event.user.username} just left the server.")
+      .send_message("#{event.user.username} just joined the server.")
   end
 
   member_leave do |event|
@@ -23,7 +23,7 @@ module DiscordEvents
   # General message event handler
   command :help do
     <<~TEXT
-      m00ch programmed me with the following commands:
+      Billy Mays programmed me with the following commands:
       ~assign_role
       ~fortune
       ~chucknorris
@@ -64,19 +64,19 @@ module DiscordEvents
 
   # Fun message event handler
   command :fortune do
-    "```\n#{`fortune -s | cowsay`}\n```"
-  end
-
-  command :chucknorris do
-    JSON.parse(RestClient.get('http://api.icndb.com/jokes/random?exclude=[explicit]')).dig('value', 'joke')
+    "```\n#{`/usr/games/fortune -s | cowsay`}\n```"
   end
 
   command :ghostbusters do
-    "```\n#{`cowsay -f ghostbusters Who you Gonna Call`}\n```"
+    "```\n#{`/usr/games/cowsay -f ghostbusters Who you Gonna Call`}\n```"
   end
 
   command :moo do
     "```\n#{`apt-get moo`}\n```"
+  end
+
+  command :chucknorris do
+    JSON.parse(RestClient.get('http://api.icndb.com/jokes/random?exclude=[explicit]')).dig('value', 'joke')
   end
 
   command :translate do |event|
