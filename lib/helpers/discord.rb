@@ -34,7 +34,7 @@ module DiscordHelpers
   # @param server [Discordrb::Server]
   # @return [Discordrb::Channel]
   def self.debug_channel(server)
-    @debug_channel ||= discord_channel(server, 'debug')
+    @debug_channel ||= discord_channel(server, 'server-debug')
   end
 
   def self.game_announce(container, player_regex, channel)

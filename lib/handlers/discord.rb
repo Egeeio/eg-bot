@@ -11,12 +11,12 @@ module DiscordEvents
 
   # Server event handler
   member_join do |event|
-    debug_channel(event.server)
+    DiscordHelpers.debug_channel(event.server)
       .send_message("#{event.user.username} just joined the server.")
   end
 
   member_leave do |event|
-    debug_channel(event.server)
+    DiscordHelpers.debug_channel(event.server)
       .send_message("#{event.user.username} just left the server.")
   end
 
