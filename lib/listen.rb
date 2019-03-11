@@ -19,12 +19,12 @@ module Listen
     @bot.run
   end
 
-  def self.game_loop
-    puts 'and away we go'
-    @timers.now_and_every(30) do
-      GenericListener.listen(@bot, 'rust', %r{\/\w+(?=.joined)})
-      GenericListener.listen(@bot, 'minecraft', /(?<=\bUUID\sof\splayer\s)(\w+)/)
-    end
-    Thread.new { loop { @timers.wait } }
-  end
+  # def self.game_loop
+  #   puts 'and away we go'
+  #   @timers.now_and_every(30) do
+  #     GenericListener.listen(@bot, 'rust', %r{\/\w+(?=.joined)})
+  #     GenericListener.listen(@bot, 'minecraft', /(?<=\bUUID\sof\splayer\s)(\w+)/)
+  #   end
+  #   Thread.new { loop { @timers.wait } }
+  # end
 end
