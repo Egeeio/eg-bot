@@ -49,6 +49,3 @@ DEPENDENCIES
   docker-api
   rest-client
   timers
-
-BUNDLED WITH
-   1.17.3
