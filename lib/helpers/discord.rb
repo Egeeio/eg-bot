@@ -38,16 +38,16 @@ module DiscordHelpers
   end
 
   def self.game_announce(player_regex, channel, game)
-    logs = `journalctl --since "30 seconds ago" --no-pager -u #{game}`
-    match = logs.match(player_regex)
+    match = `journalctl --since "30 seconds ago" --no-pager -u #{game}`.match(player_regex)
     return unless match
 
-    player_name = if match.to_s[0] == '/' # This is a hack because I hate and suck at Regex
+    player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
                     match.to_s[1..-1]
                   else
                     match.to_s
                   end
     msg = "**#{player_name}** joined the server"
+    puts msg
     channel.send_message(msg) unless check_last_message(channel, msg)
   end
 end
