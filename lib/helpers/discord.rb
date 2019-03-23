@@ -37,13 +37,12 @@ module DiscordHelpers
     @debug_channel ||= discord_channel(server, 'server-debug')
   end
 
-  def self.game_announce(container, player_regex, channel)
-    unix_time = Time.now.to_i - 30
-    logs = container.logs(stdout: true, since: unix_time)
+  def self.game_announce(player_regex, channel)
+    logs = `journalctl --since "30 seconds ago" --no-pager -u rust`
     match = logs.match(player_regex)
     return unless match
 
-    player_name = if match.to_s[0] == '/' # This is a hack for Rust because I hate and suck at Regex
+    player_name = if match.to_s[0] == '/' # This is a hack because I hate and suck at Regex
                     match.to_s[1..-1]
                   else
                     match.to_s

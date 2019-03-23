@@ -26,8 +26,8 @@ class Listen
 
   def game_loop
     @timers.now_and_every(30) do
-      GenericListener.listen(@bot, "rust", %r{\/\w+(?=.joined)})
-      GenericListener.listen(@bot, "minecraft", /(?<=\bUUID\sof\splayer\s)(\w+)/)
+      GenericListener.listen(@bot, "rust")
+      GenericListener.listen(@bot, "minecraft")
     end
     Thread.new { loop { @timers.wait } }
   end
