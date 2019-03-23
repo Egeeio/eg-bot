@@ -8,6 +8,6 @@ module GenericListener
   }
   def self.listen(bot, game)
     channel = DiscordHelpers.discord_channel(bot.servers.dig(ENV["SERVER_ID"].to_i), game)
-    DiscordHelpers.game_announce(@regex[game], channel)
+    DiscordHelpers.game_announce(@regex[game], channel, game)
   end
 end
