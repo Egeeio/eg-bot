@@ -1,5 +1,4 @@
 require "./lib/helpers/discord"
-require "./lib/helpers/container"
 
 @regex = {
   "rust" => %r{\/\w+(?=.joined)},
