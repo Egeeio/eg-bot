@@ -6,21 +6,25 @@ require "discordrb"
 require "./lib/listeners/generic"
 require "./lib/handlers/discord"
 
-# I"m listening
-module Listen
-  def self.start
+# Listen for events from Discord and systemd
+class Listen
+  def initialize
     @timers = Timers::Group.new
     @bot = Discordrb::Commands::CommandBot.new(token: ENV["TOKEN"], prefix: ENV["PREFIX"])
-    @bot.include! DiscordEvents
-    @bot.ready do |event|
-      event.bot.game = YAML.load_file("./config.yml")["games"].sample
-      game_loop()
-    end
-    @bot.run
+    @bot.include!(DiscordEvents)
   end
 
-  def self.game_loop
-    puts "and away we go!!"
+  def start
+    @bot.ready do |event|
+      event.bot.game = YAML.load_file("./config.yml")["games"].sample()
+      game_loop()
+    end
+    @bot.run()
+  end
+
+  private
+
+  def game_loop
     @timers.now_and_every(30) do
       GenericListener.listen(@bot, "rust", %r{\/\w+(?=.joined)})
       GenericListener.listen(@bot, "minecraft", /(?<=\bUUID\sof\splayer\s)(\w+)/)
