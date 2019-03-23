@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'discordrb', '~> 3.3.0'
+gem 'discordrb'
 gem 'docker-api'
 gem 'rest-client'
 gem 'timers'

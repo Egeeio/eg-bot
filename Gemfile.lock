@@ -1,15 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    discordrb (3.3.0)
-      discordrb-webhooks (~> 3.3.0)
-      ffi (>= 1.9.24)
+    discordrb (3.2.1)
+      discordrb-webhooks (~> 3.2.0.1)
       opus-ruby
       rbnacl (~> 3.4.0)
-      rest-client (>= 2.1.0.rc1)
+      rest-client
       websocket-client-simple (>= 0.3.0)
-    discordrb-webhooks (3.3.0)
-      rest-client (>= 2.1.0.rc1)
+    discordrb-webhooks (3.2.0.1)
+      rest-client
     docker-api (1.34.2)
       excon (>= 0.47.0)
       multi_json
@@ -18,7 +17,6 @@ GEM
     event_emitter (0.2.6)
     excon (0.62.0)
     ffi (1.10.0)
-    http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     mime-types (3.2.2)
@@ -30,8 +28,7 @@ GEM
       ffi
     rbnacl (3.4.0)
       ffi
-    rest-client (2.1.0.rc1)
-      http-accept (>= 1.7.0, < 2.0)
+    rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -48,7 +45,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  discordrb (~> 3.3.0)
+  discordrb
   docker-api
   rest-client
   timers
