@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "./lib/listen"
-
 raise("Exiting - Double check your environment variables.") unless ENV["TOKEN"]
 
-Listen.start
+require "./lib/listen"
+
+Listen.new.start()
