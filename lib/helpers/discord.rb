@@ -41,7 +41,7 @@ module DiscordHelpers
     log = `journalctl --since "30 seconds ago" --no-pager -u #{game}`
     if game == "starbound"
       match = log.match(/(['])(?:(?=(\\?))\2.)*?\1/) if log.include?(") connected")
-      puts "matched" + match
+      puts "matched" + match.to_s
     end
     return unless match
 
