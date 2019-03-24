@@ -40,7 +40,7 @@ module DiscordHelpers
   def self.game_announce(channel, game)
     log = `journalctl --since "30 seconds ago" --no-pager -u #{game}`
     if game == "starbound"
-      match = log.match(/(['])(?:(?=(\\?))\2.)*?\1/) if log_line.include?(") connected")
+      match = log.match(/(['])(?:(?=(\\?))\2.)*?\1/) if log.include?(") connected")
       puts "matched" + match
     end
     return unless match
