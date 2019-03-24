@@ -28,6 +28,7 @@ class Listen
     @timers.now_and_every(30) do
       GenericListener.listen(@bot, "rust")
       GenericListener.listen(@bot, "minecraft")
+      GenericListener.listen(@bot, "starbound")
     end
     Thread.new { loop { @timers.wait } }
   end

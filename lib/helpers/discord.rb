@@ -37,8 +37,12 @@ module DiscordHelpers
     @debug_channel ||= discord_channel(server, 'server-debug')
   end
 
-  def self.game_announce(player_regex, channel, game)
-    match = `journalctl --since "30 seconds ago" --no-pager -u #{game}`.match(player_regex)
+  def self.game_announce(channel, game)
+    log = `journalctl --since "30 seconds ago" --no-pager -u #{game}`
+    if game == "starbound"
+      match = log.match(/(['])(?:(?=(\\?))\2.)*?\1/) if log_line.include?(") connected")
+      puts "matched" + match
+    end
     return unless match
 
     player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
