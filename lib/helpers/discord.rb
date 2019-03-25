@@ -42,10 +42,10 @@ module DiscordHelpers
     players = []
     if game == "starbound"
       log.each_line do |line|
-        match = line.match(/(['])(?:(?=(\\?))\2.)*?\1/) if line.include?(") connected")
+        match = line.match(/(['])(?:(?=(\\?))\2.)*?\1/).to_s if line.include?(") connected")
         players.push(match)
       end
-      # puts "matched" + players.to_s
+      players.compact!
     end
     puts players.to_s
     return unless players.empty? == false
