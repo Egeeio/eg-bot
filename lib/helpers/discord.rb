@@ -39,11 +39,15 @@ module DiscordHelpers
 
   def self.game_announce(channel, game)
     log = `journalctl --since "30 seconds ago" --no-pager -u #{game}`
+    players = []
     if game == "starbound"
-      match = log.match(/(['])(?:(?=(\\?))\2.)*?\1/) if log.include?(") connected")
-      puts "matched" + match.to_s
+      log.each_line do |line|
+        match = line.match(/(['])(?:(?=(\\?))\2.)*?\1/) if line.include?(") connected")
+        players.push(match)
+      end
+      puts "matched" + players.to_s
     end
-    return unless match
+    return unless players.empty? == false
 
     player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
                     match.to_s[1..-1]
