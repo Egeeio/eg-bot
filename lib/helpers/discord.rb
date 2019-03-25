@@ -47,9 +47,8 @@ module DiscordHelpers
       end
       players.compact!
     end
-    puts players.to_s
     return unless players.empty? == false
-
+    puts players.first().to_s
     # player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
     #                 match.to_s[1..-1]
     #               else
