@@ -5,4 +5,4 @@ raise("Exiting - Double check your environment variables.") unless ENV["TOKEN"]
 
 require "./lib/listen"
 
-Listen.new.start()
+Listen.start()

@@ -1,35 +1,21 @@
 Thread.abort_on_exception = true
-require "yaml"
 require "timers"
-require "docker"
 require "discordrb"
-require "./lib/listeners/generic"
 require "./lib/handlers/discord"
 
 # Listen for events from Discord and systemd
-class Listen
-  def initialize
-    @timers = Timers::Group.new
+module Listen
+  def self.start
     @bot = Discordrb::Commands::CommandBot.new(token: ENV["TOKEN"], prefix: ENV["PREFIX"])
-    @bot.include!(DiscordEvents)
-  end
-
-  def start
-    @bot.ready do |event|
-      event.bot.game = YAML.load_file("./config.yml")["games"].sample()
-      game_loop()
-    end
+    @bot.ready { game_server_hooks() }
     @bot.run()
   end
 
-  private
-
-  def game_loop
-    @timers.now_and_every(30) do
-      GenericListener.listen(@bot, "rust")
-      GenericListener.listen(@bot, "minecraft")
-      GenericListener.listen(@bot, "starbound")
-    end
-    Thread.new { loop { @timers.wait } }
+  def self.game_server_hooks
+    server = @bot.servers.dig(ENV["SERVER_ID"].to_i)
+    games = %w[starbound rust minecraft]
+    timer = Timers::Group.new
+    timer.now_and_every(15) { DiscordHelpers.game_announce(server, games) }
+    Thread.new { loop { timer.wait } }
   end
 end
