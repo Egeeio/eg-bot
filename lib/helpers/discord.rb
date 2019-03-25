@@ -48,14 +48,14 @@ module DiscordHelpers
       players.compact!
     end
     return unless players.empty? == false
-    puts players.first().to_s
+    player_name = players.first().to_s
     # player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
     #                 match.to_s[1..-1]
     #               else
     #                 match.to_s
     #               end
-    # msg = "**#{player_name}** joined the server"
-    # puts msg
-    # channel.send_message(msg) unless check_last_message(channel, msg)
+    msg = "**#{player_name}** joined the server"
+    puts msg
+    channel.send_message(msg) unless check_last_message(channel, msg)
   end
 end
