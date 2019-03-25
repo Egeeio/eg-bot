@@ -45,17 +45,18 @@ module DiscordHelpers
         match = line.match(/(['])(?:(?=(\\?))\2.)*?\1/) if line.include?(") connected")
         players.push(match)
       end
-      puts "matched" + players.to_s
+      # puts "matched" + players.to_s
     end
+    puts players.to_s
     return unless players.empty? == false
 
-    player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
-                    match.to_s[1..-1]
-                  else
-                    match.to_s
-                  end
-    msg = "**#{player_name}** joined the server"
-    puts msg
-    channel.send_message(msg) unless check_last_message(channel, msg)
+    # player_name = if match.to_s[0] == "/" # This is a hack because I hate and suck at Regex
+    #                 match.to_s[1..-1]
+    #               else
+    #                 match.to_s
+    #               end
+    # msg = "**#{player_name}** joined the server"
+    # puts msg
+    # channel.send_message(msg) unless check_last_message(channel, msg)
   end
 end
