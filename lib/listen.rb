@@ -13,7 +13,7 @@ module Listen
 
   def self.game_server_hooks
     server = @bot.servers.dig(ENV["SERVER_ID"].to_i)
-    games = %w[starbound rust minecraft]
+    games = { "starbound" => [], "rust" => [], "minecraft" => [] } # Should this be an external file maybe?
     timer = Timers::Group.new
     timer.now_and_every(15) { DiscordHelpers.game_announce(server, games) }
     Thread.new { loop { timer.wait } }

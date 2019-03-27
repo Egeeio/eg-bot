@@ -25,7 +25,8 @@ module DiscordHelpers
   end
 
   def self.game_announce(server, games)
-    players = LogParser.parse(games.first())
+    log_parser = LogParser.new(games)
+    players = log_parser.parse(games)
     return unless players.empty? == false
 
     players_string = players.join(",")
