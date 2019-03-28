@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'discordrb'
-gem 'timers'
+gem "discordrb"
+gem "rspec"
+gem "timers"
