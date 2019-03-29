@@ -24,7 +24,7 @@ class LogParser
   private
 
   def get_logs(game)
-    `journalctl --no-pager -u #{game}`
+    `journalctl --since "15 seconds ago" --no-pager -u #{game}`
   end
 
   def game_switch(game, log_line)
