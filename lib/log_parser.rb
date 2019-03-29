@@ -15,6 +15,14 @@ class LogParser
     end
   end
 
+  def reset
+    @players.each do |key|
+      @players[key.first()] = []
+    end
+  end
+
+  private
+
   def get_logs(game)
     `journalctl --no-pager -u #{game}`
   end

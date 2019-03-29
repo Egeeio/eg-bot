@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "./lib/log_parser"
 
 # Assorted helper methods
 module DiscordHelpers
@@ -23,9 +24,9 @@ module DiscordHelpers
     @debug_channel ||= discord_channel(server, "debug")
   end
 
-  def self.game_announce(server, parser)
-    
-    parser.parse().each do |game, players|
+  def self.game_announce(server, games)
+    log_parser = LogParser.new(games)
+    log_parser.parse().each do |game, players|
       break unless players.empty? == false
 
       players_string = players.join(",")
@@ -33,5 +34,6 @@ module DiscordHelpers
       msg = "**#{players_string}** have joined the server"
       channel.send_message(msg) unless check_last_message(channel, msg)
     end
+    log_parser.reset()
   end
 end
