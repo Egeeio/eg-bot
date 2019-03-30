@@ -6,14 +6,13 @@ require "./lib/handlers/discord"
 # Listen for events from Discord and systemd
 module Listen
   def self.start
-    @bot = Discordrb::Commands::CommandBot.new(token: ENV["TOKEN"], prefix: ENV["PREFIX"])
-    @bot.ready { game_server_hooks() }
-    @bot.run()
+    bot = Discordrb::Commands::CommandBot.new(token: ENV["TOKEN"], prefix: ENV["PREFIX"])
+    bot.ready { game_server_hooks(bot.servers.values.first()) }
+    bot.run()
   end
 
-  def self.game_server_hooks
-    server = @bot.servers.dig(ENV["SERVER_ID"].to_i)
-    games = { "starbound" => [], "rust" => [], "minecraft" => [] } # Should this be an external file maybe?
+  def self.game_server_hooks(server)
+    games = { "minecraft" => [], "starbound" => [], "rust" => [] } # Should this be an external file maybe?
     timer = Timers::Group.new
     timer.now_and_every(15) { DiscordHelpers.game_announce(server, games) }
     Thread.new { loop { timer.wait } }
