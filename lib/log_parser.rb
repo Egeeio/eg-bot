@@ -24,7 +24,8 @@ class LogParser
   private
 
   def get_logs(game)
-    `journalctl --since "15 seconds ago" --no-pager -u #{game}`
+    # "ssh -p2221 -t gsc@egee.io"
+    `journalctl --since '15 seconds ago' --no-pager -u #{game}`
   end
 
   def game_switch(game, log_line)
