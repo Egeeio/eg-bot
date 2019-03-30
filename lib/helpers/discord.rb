@@ -21,17 +21,23 @@ module DiscordHelpers
   end
 
   def self.debug_channel(server)
-    @debug_channel ||= discord_channel(server, "debug")
+    discord_channel(server, "debug")
+  end
+
+  def self.misc_games_channel(server)
+    discord_channel(server, "misc-games")
   end
 
   def self.game_announce(server, games)
     log_parser = LogParser.new(games)
-    log_parser.parse().each do |game, players|
-      break unless players.empty? == false
+    log_parser.parse()
+    log_parser.players.each do |game, players|
+      next unless players.empty? == false
 
       players_string = players.join(",")
       channel = discord_channel(server, game)
-      msg = "**#{players_string}** have joined the server"
+      channel = misc_games_channel(server) if channel.nil?
+      msg = "**#{players_string}** have joined the #{game.capitalize()} server"
       channel.send_message(msg) unless check_last_message(channel, msg)
     end
     log_parser.reset()
