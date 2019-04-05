@@ -37,7 +37,7 @@ module DiscordHelpers
       players_string = players.join(",")
       channel = discord_channel(server, game)
       channel = misc_games_channel(server) if channel.nil?
-      msg = "**#{players_string}** have joined the #{game.capitalize()} server"
+      msg = "**#{players_string}** has joined the #{game.capitalize()} server"
       channel.send_message(msg) unless check_last_message(channel, msg)
     end
     log_parser.reset()
