@@ -1,3 +1,6 @@
+AllCops:
+  TargetRubyVersion: 2.5
+
 Style/MethodCallWithoutArgsParentheses:
   Enabled: false
 
@@ -5,4 +8,4 @@ Style/StringLiterals:
   EnforcedStyle: "double_quotes"
 
 Metrics/LineLength:
-  Max: 100
+  Max: 105
