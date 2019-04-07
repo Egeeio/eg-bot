@@ -1,5 +1,5 @@
 task :run do
-  ruby "./bin/androgee"
+  ruby "./bin/gsd-bot"
 end
 
 task :test do
