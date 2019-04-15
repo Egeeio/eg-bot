@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Yes, linter
 class LogParser
   attr_reader :players
@@ -24,14 +26,14 @@ class LogParser
   private
 
   def get_logs(game)
-    # "ssh -p2221 -t gsc@egee.io"
-    `journalctl --since '15 seconds ago' --no-pager -u #{game}`
+    `ssh gsc@egee.io -p2221 "journalctl --since '15 seconds ago' --no-pager -u #{game}"`
+    # `journalctl --since '15 seconds ago' --no-pager -u #{game}`
   end
 
   def game_switch(game, log_line)
     case game
-    when "starbound"
-      starbound(log_line)
+    when "sdtd"
+      sdtd(log_line)
     when "rust"
       rust(log_line)
     when "minecraft"
@@ -49,5 +51,14 @@ class LogParser
 
   def minecraft(log_line)
     log_line.match(/(?<=\bUUID\sof\splayer\s)(\w+)/).to_s()
+  end
+
+  def sdtd(log_line)
+    match = log_line.match(/'.*/).to_s()
+    if match.include? "joined the game"
+      return match.split("'")[1]
+    else
+      return ""
+    end
   end
 end

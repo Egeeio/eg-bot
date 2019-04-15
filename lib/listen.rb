@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Thread.abort_on_exception = true
 require "timers"
 require "discordrb"
@@ -12,7 +14,7 @@ module Listen
   end
 
   def self.game_server_hooks(server)
-    games = { "minecraft" => [], "starbound" => [], "rust" => [] } # Should this be an external file maybe?
+    games = { "minecraft" => [], "sdtd" => [], "rust" => [] } # Should this be an external file maybe?
     timer = Timers::Group.new
     timer.now_and_every(15) { DiscordHelpers.game_announce(server, games) }
     Thread.new { loop { timer.wait } }
