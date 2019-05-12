@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 $LOAD_PATH << "./lib"
 raise("Exiting - Double check your environment variables.") unless ENV["TOKEN"]
 
-require "listen"
+require "bot"
 
-Listen.start()
+Bot.connect()
