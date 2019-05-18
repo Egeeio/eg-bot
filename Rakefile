@@ -1,5 +1,5 @@
 task :run do
-  ruby "./bin/gsd-bot"
+  ruby "./bin/eg-bot"
 end
 
 task :test do
