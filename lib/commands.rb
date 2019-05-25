@@ -9,15 +9,10 @@ module DiscordCommands
   extend Discordrb::EventContainer
   command :help do
     <<~TEXT
-      Billy Mays programmed me with the following commands:
-      ~assign_role
-      ~fortune
-      ~chucknorris
-      ~ghostbusters
-      ~moo
-      ~translate
-      ~catpic
-      ~catgif
+      #{ENV["PREFIX"]}chucknorris
+      #{ENV["PREFIX"]}translate
+      #{ENV["PREFIX"]}catpic
+      #{ENV["PREFIX"]}catgif
     TEXT
   end
 
