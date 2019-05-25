@@ -7,7 +7,7 @@ require "events"
 # Listen for events from Discord and systemd
 module Bot
   def self.listen
-    bot = Discordrb::Commands::CommandBot.new(token: ENV["TEST_BOT"], prefix: ENV["PREFIX"])
+    bot = Discordrb::Commands::CommandBot.new(token: ENV["BOT_TOKEN"], prefix: ENV["PREFIX"])
     bot.include! DiscordEvents
     bot.include! DiscordCommands
     bot.ready { bootstrap() }
@@ -15,6 +15,6 @@ module Bot
   end
 
   def self.bootstrap
-    puts "yeet"
+    puts "prepare to yeet"
   end
 end

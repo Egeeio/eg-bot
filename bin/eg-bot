@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH << "./lib"
-raise("Exiting - Double check your environment variables.") unless ENV["TEST_BOT"]
+raise("Exiting - Double check your environment variables.") unless ENV["BOT_TOKEN"]
 
 require "bot"
 
