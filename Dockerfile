@@ -1,8 +1,7 @@
-FROM ruby:2.5
+FROM node:12-alpine
 WORKDIR /opt/
 COPY . /opt/
-RUN gem uninstall bundler
-RUN gem install bundler -v2.0.1
-RUN bundle install
+RUN npm install
+RUN npm build
 
-CMD ["rake", "run"]
+CMD ["npm", "start"]
