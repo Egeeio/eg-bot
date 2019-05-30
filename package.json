@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Egeeio/eg-bot#readme",
   "dependencies": {
     "discord.js": "^11.5.0",
+    "moment": "^2.24.0",
     "typescript": "^3.4.5"
   },
   "devDependencies": {
