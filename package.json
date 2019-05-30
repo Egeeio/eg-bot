@@ -4,7 +4,12 @@
   "description": "a bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && node dist/index.js",
+    "build": "node_modules/.bin/tsc --build tsconfig.json",
+    "rebuild": "npm run clean-npm && npm run clean-dist && npm run build",
+    "clean-npm": "rm -rf node_modules && npm install",
+    "clean-dist": "rm -rf dist/* && touch dist/.gitkeep",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
