@@ -11,7 +11,7 @@ export async function GetChannel(guild: Guild, channelName: string) {
     return channel as TextChannel;
   }
 
-export async function SendChannelMessage(channel: TextChannel, message: string) {
+export function SendChannelMessage(channel: TextChannel, message: string) {
   channel.send(message);
   const timestamp = moment().format("MMMM Do YYYY, h:mm:ss a");
   console.log(`${timestamp}: ${message}`);
