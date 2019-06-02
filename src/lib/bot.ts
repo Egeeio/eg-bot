@@ -1,9 +1,11 @@
+import moment = require("moment");
 import { Client} from "discord.js";
 import { GetChannel, GetGuild, SendChannelMessage } from "./helpers";
 
 export default async function Connect() {
   const client = new Client();
   await client.login(process.env.TOKEN);
+  console.log(`Logged in at: ${moment().format("MMMM Do YYYY, h:mm:ss a")}`);
   Listen(client);
 }
 
