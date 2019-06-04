@@ -13,7 +13,7 @@ async function Listen(client: Client) {
   const guild = await GetGuild(client, process.env.SERVER_ID!);
   client.on("guildMemberAdd", async (member) => {
     const general = await GetChannel(guild, process.env.GENERAL_CHANNEL!);
-    SendChannelMessage(general, `ya boy ${member.displayName} has joined the server!`);
+    SendChannelMessage(general, `**${member.displayName}** has joined the server!`);
   });
   client.on("guildMemberRemove", async (member) => {
     const debug = await GetChannel(guild, process.env.DEBUG_CHANNEL!);
